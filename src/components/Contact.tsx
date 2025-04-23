@@ -162,7 +162,7 @@ const Contact: React.FC = () => {
                   href="mailto:john.doe@example.com" 
                   className="text-primary hover:underline"
                 >
-                  john.doe@example.com
+                  mathis@simats.dev
                 </a>
               </div>
             </div>
@@ -174,12 +174,12 @@ const Contact: React.FC = () => {
               <div>
                 <h3 className="text-xl font-bold mb-2" data-i18n="contact.linkedin">{linkedinText}</h3>
                 <a 
-                  href="https://linkedin.com/in/johndoe" 
+                  href="https://linkedin.com/in/mathis-maximin" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="text-primary hover:underline"
                 >
-                  linkedin.com/in/johndoe
+                  linkedin.com/in/mathis-maximin
                 </a>
               </div>
             </div>
