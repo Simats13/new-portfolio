@@ -26,7 +26,7 @@ const TechStack: React.FC = () => {
     { name: 'Express', icon: 'node-js', color: '#000000' },
     { name: 'MongoDB', icon: 'database', color: '#47A248' },
     { name: 'Firestore', icon: 'database', color: '#336791' },
-    { name: 'RESTful APIs', icon: 'server', color: '#4CAF50' },
+    { name: 'RESTful APIs', icon: 'database', color: '#4CAF50' },
   ];
   
   const toolSkills: Skill[] = [
@@ -37,7 +37,7 @@ const TechStack: React.FC = () => {
     { name: 'Webpack', icon: 'js', color: '#8DD6F9' },
     { name: 'CI/CD', icon: 'github-alt', color: '#4CAF50' },
     { name: 'Kubernetes', icon: 'kubernetes', color: '#326CE5' },
-    { name: 'Azure', icon: 'azure', color: '#0089D6' },
+    { name: 'Azure', icon: 'microsoft', color: '#0089D6' },
     { name: 'Google Cloud', icon: 'google', color: '#4285F4' },
     { name: 'Fastlane', icon: 'fastlane', color: '#000000' },
     { name: 'EAS', icon: 'eas', color: '#000000' },

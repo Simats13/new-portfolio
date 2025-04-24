@@ -5,7 +5,8 @@
   "type": "module",
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-scroll-parallax": "^3.4.5"
   },
   "devDependencies": {
     "@types/node": "^18.15.0",
@@ -41,4 +42,4 @@
       "last 1 safari version"
     ]
   }
-} 
+}
