@@ -1,3 +1,5 @@
+import { channel } from "diagnostics_channel";
+
 const translations = {
   navbar: {
     home: "Accueil",
@@ -19,13 +21,12 @@ const translations = {
   about: {
     title: "À Propos de Moi",
     paragraph1:
-      "Depuis toujours passionné par les nouvelles technologies, à la recherche d'un CDI en tant que DevOps ou bien FullStack.",
+      "Depuis toujours passionné par les nouvelles technologies, j'ai développé une expertise approfondie dans ce domaine en constante évolution. Cette passion m'a conduit à maîtriser divers outils et langages informatiques, tout en restant à l'affût des dernières tendances et innovations du secteur. Mon approche proactive de l'apprentissage m'a permis de mettre en œuvre ces connaissances dans plusieurs projets concrets, démontrant ma capacité à transformer des concepts techniques en solutions pratiques et efficaces.",
     paragraph2:
-      "Sociable de nature j'aime le contact humain. Curieux je cherche à me challenger en découvrant de nouvelles choses afin de parfaire ma culture.",
-    socialConnect: "Connectez-vous avec moi:",
+      "Toujours curieux, j’aime me lancer de nouveaux défis pour élargir mes connaissances !",
+    socialConnect: "On se connecte ? 👤",
     email: "mathis@simats.dev",
-    phone: "+33 6 34 67 58 38",
-    github: "@mathis-maximin",
+    github: "@simats13",
   },
   experience: {
     title: "Expérience Professionnelle",
@@ -60,19 +61,40 @@ const translations = {
   projects: {
     title: "Projets",
     viewProject: "Voir le Projet",
+    closeModal: "Fermer",
+    featuresTitle: "Fonctionnalités",
+    technologiesTitle: "Technologies",
+    visitProject: "Voir le projet",
+    challengesTitle: "Défis",
     project1: {
       title: "MyContainer",
       description:
         "Création d'une plateforme permettant aux étudiants d'héberger les projets informatiques des étudiants de première et deuxième année (HTML/CSS/JS, PHP-MySQL, WPF-C#, ANGULAR-JEE) via des conteneurs Docker orchestrés via Kubernetes le tout hébergé sur Azure.",
+      longDescription:
+        "Création d'une plateforme permettant aux étudiants d'héberger les projets informatiques des étudiants de première et deuxième année (HTML/CSS/JS, PHP-MySQL, WPF-C#, ANGULAR-JEE) via des conteneurs Docker orchestrés via Kubernetes le tout hébergé sur Azure.",
       technologies: ["Docker", "Azure", "Kubernetes"],
       period: "Mars 2021 - Juillet 2021",
+      feature1: "Hébergement de conteneurs Docker",
+      feature2: "Orchestration via Kubernetes",
+      feature3: "Gestion des ressources Azure",
+      challenge1: "Hébergement de conteneurs Docker",
+      challenge2: "Orchestration via Kubernetes",
+      challenge3: "Gestion des ressources Azure",
     },
     project2: {
       title: "System on Demand",
       description:
         "Fournir une solution complète et automatique pour installer et configurer le système d'exploitation de son choix (Windows, Debian, Raspberry) via un serveur PXE local et en ligne. Mais aussi fournir une documentation pour chaque système d'exploitation pour l'utilisateur mais aussi l'administrateur du système.",
+      longDescription:
+        "Fournir une solution complète et automatique pour installer et configurer le système d'exploitation de son choix (Windows, Debian, Raspberry) via un serveur PXE local et en ligne. Mais aussi fournir une documentation pour chaque système d'exploitation pour l'utilisateur mais aussi l'administrateur du système.",
       technologies: ["PXE", "Windows", "Debian", "Raspberry"],
       period: "Septembre 2020 - Janvier 2020",
+      feature1: "Installation et configuration du système d'exploitation",
+      feature2: "Documentation pour l'utilisateur et l'administrateur",
+      feature3: "Automatisation de l'installation",
+      challenge1: "Installation et configuration du système d'exploitation",
+      challenge2: "Documentation pour l'utilisateur et l'administrateur",
+      challenge3: "Automatisation de l'installation",
     },
   },
   education: {
@@ -119,7 +141,6 @@ const translations = {
   contact: {
     title: "Entrer en Contact",
     email: "Email :",
-    phone: "Téléphone: +33 6 34 67 58 38",
     github: "GitHub: @mathis-maximin",
     linkedin: "LinkedIn",
     name: "Nom",
@@ -139,6 +160,7 @@ const translations = {
     madeWith: "Fait avec",
     and: "et",
   },
+  
   footer: {
     copyright: "© 2025 Mathis Maximin. Tous droits réservés.",
     quickLinks: "Liens Rapides",

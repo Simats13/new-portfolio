@@ -75,7 +75,7 @@ const Footer: React.FC = () => {
             </p>
             <div className="flex space-x-4">
               <a
-                href="https://linkedin.com"
+                href="https://linkedin.com/in/mathis-maximin"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors duration-300"
@@ -83,7 +83,7 @@ const Footer: React.FC = () => {
                 <i className="fab fa-linkedin-in"></i>
               </a>
               <a
-                href="https://github.com"
+                href="https://github.com/simats13"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white transition-colors duration-300"
@@ -91,7 +91,7 @@ const Footer: React.FC = () => {
                 <i className="fab fa-github"></i>
               </a>
               <a
-                href={"mailto:" + about.email}
+                href={"mailto:mathis@simats.dev"}
                 className="text-gray-400 hover:text-white transition-colors duration-300"
               >
                 <i className="fas fa-envelope"></i>

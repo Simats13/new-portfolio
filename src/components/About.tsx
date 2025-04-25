@@ -1,11 +1,36 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { translate } from "../i18n";
 
 const About: React.FC = () => {
+  const imageRef = useRef<HTMLDivElement>(null);
   const title = translate("about.title");
   const paragraph1 = translate("about.paragraph1");
   const paragraph2 = translate("about.paragraph2");
   const socialConnect = translate("about.socialConnect");
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove("opacity-0");
+            entry.target.classList.add("opacity-100");
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (imageRef.current) {
+      observer.observe(imageRef.current);
+    }
+
+    return () => {
+      if (imageRef.current) {
+        observer.unobserve(imageRef.current);
+      }
+    };
+  }, []);
 
   return (
     <section id="about" className="py-20 bg-white">
@@ -17,14 +42,18 @@ const About: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Profile image */}
           <div className="flex justify-center">
-            <div className="relative group">
-              <div className="w-64 h-64 sm:w-72 sm:h-72 rounded-full overflow-hidden border-4 border-primary transform transition-transform duration-300 group-hover:-translate-y-2">
+            <div
+              ref={imageRef}
+              className="relative group opacity-0 transition-opacity duration-1000"
+            >
+              <div className="w-64 h-64 sm:w-72 sm:h-72 rounded-full overflow-hidden border-4 border-primary transform transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-lg">
                 <img
                   src="/assets/images/profilePicture.png"
                   alt="Profile"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
+              <div className="absolute inset-0 rounded-full bg-primary opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
             </div>
           </div>
 
