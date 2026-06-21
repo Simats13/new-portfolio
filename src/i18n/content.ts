@@ -97,7 +97,7 @@ const fr: Content = {
     title: "Dev full-stack avec une sensibilité Sec & Ops",
     body: [
       "Diplômé d'un parcours niveau 7 « Expert Cloud Dev/Sec/Ops » à l'ESIEA, je combine le développement applicatif et une solide culture sécurité et infrastructure (CCNA CyberOps, architecture hexagonale, CI/CD containerisée).",
-      "À l'aise aussi bien côté front (React, Next.js, Tailwind) que back (Node.js, API REST/GraphQL/gRPC), j'ai déjà lancé des plateformes en production touchant des milliers d'utilisateurs.",
+      "À l'aise aussi bien côté front (React, Next.js, Tailwind) que back (Node.js, API REST/POSTGRESQL/NoSQL), j'ai déjà lancé des plateformes en production touchant des milliers d'utilisateurs.",
     ],
     stats: [
       { value: "4", label: "ans d'expérience" },
@@ -241,7 +241,7 @@ const fr: Content = {
       {
         label: "Back-end",
         icon: "fa-server",
-        items: ["Node.js", "Express", "API REST", "GraphQL", "gRPC"],
+        items: ["Node.js", "Express", "API REST", "PostgreSQL", "NoSQL"],
       },
       {
         label: "Langages",
