@@ -1,93 +1,46 @@
-# Professional Portfolio Website
+# Mathis Maximin — Portfolio
 
-A modern, responsive portfolio website built with React, TypeScript, Tailwind CSS, and Vite. This portfolio showcases professional experience, projects, and skills with a clean, user-friendly interface.
+Portfolio personnel de **Mathis Maximin**, développeur Full-Stack TypeScript/Node.js & DevSecOps.
+Site moderne, sombre et responsive construit avec React, TypeScript, Tailwind CSS et Vite.
 
-## Features
+## Fonctionnalités
 
-- 🌐 Bilingual support (English and French)
-- 📱 Fully responsive design that works on all devices
-- ✨ Modern UI with animations and transitions
-- 🌙 Clean and professional design
-- 📊 Interactive skill bars and project cards
-- 📝 Working contact form (simulated in this version)
-- 🚀 Fast and optimized performance with Vite
+- 🌐 Bilingue (Français / Anglais) via React Context
+- 🌑 Design dark moderne : glassmorphism, dégradés cyan/violet, grille lumineuse
+- ⌨️ Hero avec effet machine à écrire cyclant sur plusieurs rôles
+- 🎞️ Animations de révélation au scroll (Intersection Observer)
+- 📱 Entièrement responsive
+- 🎮 Easter egg Konami Code (↑ ↑ ↓ ↓ ← → ← → B A)
+- 🚀 Build optimisé avec Vite
 
 ## Sections
 
-- Hero section with animated typing effect
-- About me with professional information
-- Work experience timeline
-- Projects showcase with details and links
-- Technical skills with progress bars
-- Contact form and information
-- Footer with social links and quick navigation
+- **Hero** — accroche, rôles animés, disponibilité, liens sociaux
+- **À propos** — pitch + statistiques clés
+- **Expériences** — timeline (Cleo Care / Saint-Martin-d'Hères, Kenko, ESIEA)
+- **Réalisations** — projets phares (Kenko, app commerçants Flutter, Cleo Care)
+- **Compétences** — stack technique groupée + certifications
+- **Contact** — email, téléphone, localisation, langues
 
-## Setup and Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/portfolio.git
-cd portfolio
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Start the development server:
-```bash
-npm run dev
-```
-
-4. The site will be available at `http://localhost:5173`
-
-## Customization
-
-### Personal Information
-
-Edit your personal information in the translation files:
-- `src/i18n/en.ts` for English
-- `src/i18n/fr.ts` for French
-
-### Profile Image
-
-Replace the profile image URL in the `About.tsx` component with your own image URL or add it to the `public` directory.
-
-### Project Images and Details
-
-Update project details in the translation files and project images in the `Projects.tsx` component.
-
-### Skills
-
-Modify the skills lists in the `TechStack.tsx` component to reflect your own skill set.
-
-## Technologies Used
-
-- React.js
-- TypeScript
-- Tailwind CSS
-- Vite
-- CSS Animations
-- Intersection Observer API
-- Font Awesome Icons
-
-## Build for Production
-
-To create a production build:
+## Lancer le projet
 
 ```bash
-npm run build
+yarn install     # ou npm install
+yarn dev         # http://localhost:5173
+yarn build       # build de production dans dist/
+yarn preview     # prévisualiser le build
 ```
 
-The build files will be in the `dist` folder, ready to be deployed to any static site hosting service.
+## Personnalisation
 
-To preview the production build locally:
+Tout le contenu (FR & EN) est centralisé dans **`src/i18n/content.ts`** :
+expériences, projets, compétences, certifications, coordonnées.
+La palette et les animations se règlent dans `tailwind.config.js` et `src/index.css`.
 
-```bash
-npm run preview
-```
+## Stack technique
 
-## License
+React 18 · TypeScript · Tailwind CSS · Vite · Font Awesome · Intersection Observer API
 
-MIT 
+## Licence
+
+MIT

@@ -1,163 +1,83 @@
-import React, { useEffect, useRef } from "react";
-import { translate } from "../i18n";
-
-interface Job {
-  id: string;
-  title: string;
-  company: string;
-  period: string;
-  description: string;
-  icon: string;
-}
+import React from "react";
+import { useLanguage } from "../i18n/LanguageContext";
+import { useReveal } from "../hooks/useReveal";
+import SectionHeading from "./SectionHeading";
 
 const Experience: React.FC = () => {
-  const title = translate("experience.title");
-
-  const jobs: Job[] = [
-    {
-      id: "job1",
-      title: translate("experience.job1.title"),
-      company: translate("experience.job1.company"),
-      period: translate("experience.job1.period"),
-      description: translate("experience.job1.description"),
-      icon: "code",
-    },
-    {
-      id: "job2",
-      title: translate("experience.job2.title"),
-      company: translate("experience.job2.company"),
-      period: translate("experience.job2.period"),
-      description: translate("experience.job2.description"),
-      icon: "laptop-code",
-    },
-    {
-      id: "job3",
-      title: translate("experience.job3.title"),
-      company: translate("experience.job3.company"),
-      period: translate("experience.job3.period"),
-      description: translate("experience.job3.description"),
-      icon: "window-maximize",
-    },
-    {
-      id: "job4",
-      title: translate("experience.job4.title"),
-      company: translate("experience.job4.company"),
-      period: translate("experience.job4.period"),
-      description: translate("experience.job4.description"),
-      icon: "code",
-    },
-  ];
-
-  // Animation on scroll
-  const timelineRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate-fade-in");
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    const timelineItems = document.querySelectorAll(".timeline-item");
-    timelineItems.forEach((item) => {
-      observer.observe(item);
-    });
-
-    return () => {
-      timelineItems.forEach((item) => {
-        observer.unobserve(item);
-      });
-    };
-  }, []);
+  const { t } = useLanguage();
+  const ref = useReveal<HTMLElement>();
 
   return (
-    <section id="experience" className="py-20 bg-section-bg">
-      <div className="section-container">
-        <h2 className="section-title" data-i18n="experience.title">
-          {title}
-        </h2>
+    <section
+      id="experience"
+      ref={ref}
+      className="scroll-mt-20 border-y border-border bg-bg-soft"
+    >
+      <div className="section">
+        <SectionHeading eyebrow={t.experience.eyebrow} title={t.experience.title} />
 
-        {/* Timeline */}
-        <div ref={timelineRef} className="relative mt-16">
-          {/* Center line */}
-          <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-200"></div>
-
-          <div className="space-y-12">
-            {jobs.map((job, index) => (
-              <div
-                key={job.id}
-                className={`timeline-item opacity-0 transition-all duration-1000 ${
-                  index % 2 === 0
-                    ? "md:ml-auto md:pl-16 md:pr-0"
-                    : "md:mr-auto md:pr-16 md:pl-0"
-                } md:w-1/2 relative`}
+        <div className="relative ml-2 border-l border-border pl-8 sm:ml-3">
+          {t.experience.items.map((item, i) => (
+            <div key={i} className="reveal relative pb-12 last:pb-0">
+              {/* Timeline dot */}
+              <span
+                className={`absolute -left-[41px] top-1.5 flex h-5 w-5 items-center justify-center rounded-full border-2 ${
+                  item.current
+                    ? "border-green bg-green/20"
+                    : "border-border bg-surface"
+                }`}
               >
-                {/* Timeline dot */}
-                <div
-                  className={`hidden md:flex absolute top-6 w-12 h-12 rounded-full bg-primary text-white shadow-md z-10 ${
-                    index % 2 === 0
-                      ? "left-0 -translate-x-1/2"
-                      : "right-0 translate-x-1/2"
-                  } items-center justify-center`}
-                >
-                  <i
-                    className={`fas fa-${job.icon}`}
-                    style={{ fontSize: "1.25rem" }}
-                  ></i>
-                </div>
+                <span
+                  className={`h-2 w-2 rounded-full ${
+                    item.current ? "bg-green" : "bg-muted"
+                  }`}
+                />
+              </span>
 
-                {/* Mobile dot - only visible on small screens */}
-                <div className="md:hidden absolute left-0 top-6 w-10 h-10 rounded-full bg-primary text-white shadow-md z-10 flex items-center justify-center">
-                  <i
-                    className={`fas fa-${job.icon}`}
-                    style={{ fontSize: "1.1rem" }}
-                  ></i>
-                </div>
-
-                {/* Content card */}
-                <div
-                  className={`
-                  ml-16 md:ml-0 p-6 bg-white rounded-lg shadow-md 
-                  hover:shadow-lg transition-shadow duration-300
-                  ${index % 2 === 0 ? "md:text-right" : ""}
-                `}
-                >
-                  <h3
-                    className="text-xl font-bold text-text"
-                    data-i18n={`experience.${job.id}.title`}
-                  >
-                    {job.title}
-                  </h3>
-
-                  <h4
-                    className="text-lg font-medium text-primary mt-1"
-                    data-i18n={`experience.${job.id}.company`}
-                  >
-                    {job.company}
-                  </h4>
-
-                  <div
-                    className="text-sm text-light-text mt-2 mb-4"
-                    data-i18n={`experience.${job.id}.period`}
-                  >
-                    {job.period}
+              <div className="card card-hover p-6">
+                <div className="flex flex-wrap items-start justify-between gap-2">
+                  <div>
+                    <h3 className="text-lg font-semibold text-text">{item.role}</h3>
+                    <p className="mt-0.5 text-ink">{item.company}</p>
                   </div>
+                  {item.current && (
+                    <span className="inline-flex items-center gap-1.5 rounded-full border border-green/40 bg-green/10 px-3 py-1 text-xs font-medium text-green">
+                      <span className="h-1.5 w-1.5 rounded-full bg-green" />
+                      {t.experience.current}
+                    </span>
+                  )}
+                </div>
 
-                  <p
-                    className="text-text"
-                    data-i18n={`experience.${job.id}.description`}
-                  >
-                    {job.description}
-                  </p>
+                <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 font-mono text-xs text-muted">
+                  <span>
+                    <i className="fa-regular fa-calendar mr-1.5" />
+                    {item.period}
+                  </span>
+                  <span>
+                    <i className="fa-solid fa-location-dot mr-1.5" />
+                    {item.location}
+                  </span>
+                </div>
+
+                <ul className="mt-4 space-y-2">
+                  {item.bullets.map((b, bi) => (
+                    <li key={bi} className="flex gap-2.5 text-sm text-muted">
+                      <i className="fa-solid fa-angle-right mt-1 text-xs text-ink" />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {item.stack.map((s) => (
+                    <span key={s} className="chip">
+                      {s}
+                    </span>
+                  ))}
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

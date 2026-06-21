@@ -1,147 +1,87 @@
-import React, { useState, useEffect } from "react";
-import { translate } from "../i18n";
+import React, { useEffect, useState } from "react";
+import { useLanguage } from "../i18n/LanguageContext";
+import { useTheme } from "../theme/ThemeContext";
 
-interface NavbarProps {
-  currentLang: string;
-  onLanguageChange: (lang: string) => void;
-  isVisible: boolean;
-}
+const Navbar: React.FC = () => {
+  const { t } = useLanguage();
+  const { theme, toggleTheme } = useTheme();
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
 
-const Navbar: React.FC<NavbarProps> = ({
-  currentLang,
-  onLanguageChange,
-  isVisible,
-}) => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
-  const [mounted, setMounted] = useState<boolean>(false);
-
-  // Ne rendre la Navbar qu'après le premier montage pour éviter le flash initial
   useEffect(() => {
-    setMounted(true);
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const navLinks = [
-    { id: "home", label: translate("navbar.home"), href: "#home" },
-    { id: "about", label: translate("navbar.about"), href: "#about" },
-    {
-      id: "experience",
-      label: translate("navbar.experience"),
-      href: "#experience",
-    },
-    { id: "projects", label: translate("navbar.projects"), href: "#projects" },
-    { id: "skills", label: translate("navbar.skills"), href: "#skills" },
-    { id: "contact", label: translate("navbar.contact"), href: "#contact" },
+  const links = [
+    { href: "#about", label: t.nav.about },
+    { href: "#experience", label: t.nav.experience },
+    { href: "#projects", label: t.nav.projects },
+    { href: "#skills", label: t.nav.skills },
+    { href: "#contact", label: t.nav.contact },
   ];
-
-  if (!mounted) {
-    return null;
-  }
 
   return (
     <header
-      className={`fixed w-full z-50 transition-all duration-300 bg-white bg-opacity-95 backdrop-blur-[10px] shadow-md 
-        ${
-          isVisible
-            ? "animate-fadeDown opacity-100"
-            : "opacity-0 pointer-events-none"
-        }`}
-      aria-hidden={!isVisible}
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        scrolled
+      ? "border-b border-border bg-bg/80 backdrop-blur-xl"
+          : "border-b border-transparent bg-transparent"
+      }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-[70px]">
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <a href="#home" className="text-xl font-bold text-primary">
-              Mathis Maximin
-            </a>
-          </div>
+      <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
+        {/* Spacer for centering links on desktop */}
+        <div className="hidden flex-1 md:block" />
 
-          {/* Desktop Nav Links */}
-          <nav className="hidden md:flex space-x-8">
-            {navLinks.map((link) => (
+        <ul className="hidden items-center gap-7 md:flex">
+          {links.map((link) => (
+            <li key={link.href}>
               <a
-                key={link.id}
                 href={link.href}
-                className="text-text hover:text-primary transition-colors duration-300"
-                data-i18n={`navbar.${link.id}`}
+                className="text-sm text-muted transition-colors hover:text-text"
               >
                 {link.label}
               </a>
-            ))}
-          </nav>
+            </li>
+          ))}
+        </ul>
 
-          {/* Language Switcher */}
-          <div className="flex items-center space-x-2">
-            <button
-              onClick={() => onLanguageChange("en")}
-              className={`px-2 py-1 rounded-md text-sm transition-colors ${
-                currentLang === "en"
-                  ? "bg-primary text-white"
-                  : "hover:bg-gray-100"
-              }`}
-            >
-              EN
-            </button>
-            <button
-              onClick={() => onLanguageChange("fr")}
-              className={`px-2 py-1 rounded-md text-sm transition-colors ${
-                currentLang === "fr"
-                  ? "bg-primary text-white"
-                  : "hover:bg-gray-100"
-              }`}
-            >
-              FR
-            </button>
-
-            {/* Mobile menu button */}
-            <button
-              className="md:hidden p-2 rounded-md hover:bg-gray-100"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                {mobileMenuOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                )}
-              </svg>
-            </button>
-          </div>
+        <div className="flex flex-1 items-center justify-end gap-2.5">
+          <button
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-surface text-ink transition-colors hover:border-ink/50 hover:text-text"
+          >
+            <i className={`fa-solid ${theme === "dark" ? "fa-sun" : "fa-moon"}`} />
+          </button>
+          <button
+            onClick={() => setOpen((v) => !v)}
+            aria-label="Menu"
+            className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-surface text-text md:hidden"
+          >
+            <i className={`fa-solid ${open ? "fa-xmark" : "fa-bars"}`} />
+          </button>
         </div>
-      </div>
+      </nav>
 
       {/* Mobile menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-200">
-          <div className="px-2 pt-2 pb-3 space-y-1">
-            {navLinks.map((link) => (
-              <a
-                key={link.id}
-                href={link.href}
-                className="block px-3 py-2 rounded-md hover:bg-gray-100"
-                onClick={() => setMobileMenuOpen(false)}
-                data-i18n={`navbar.${link.id}`}
-              >
-                {link.label}
-              </a>
+      {open && (
+        <div className="border-t border-border bg-bg/95 backdrop-blur-xl md:hidden">
+          <ul className="flex flex-col px-5 py-3">
+            {links.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className="block py-2.5 text-muted transition-colors hover:text-text"
+                >
+                  {link.label}
+                </a>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       )}
     </header>
