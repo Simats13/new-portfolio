@@ -40,8 +40,6 @@ const Footer: React.FC = () => {
           </a>
           
         </div>
-
-        <p className="font-mono text-xs text-muted/70">{t.footer.built}</p>
       </div>
     </footer>
   );

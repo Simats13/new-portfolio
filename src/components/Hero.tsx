@@ -74,7 +74,7 @@ const Hero: React.FC = () => {
               <span className="inline-block h-6 w-[2px] animate-blink bg-ink sm:h-7" />
             </div>
 
-            <p className="mt-6 max-w-2xl text-lg font-medium text-text/90">{t.hero.tagline}</p>
+
             <p className="mt-3 max-w-2xl text-muted">{t.hero.intro}</p>
 
             <p className="mt-5 flex items-center gap-2 text-sm text-muted">
