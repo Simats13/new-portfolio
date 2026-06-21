@@ -182,6 +182,16 @@ const fr: Content = {
     subtitle: "Des plateformes pensées pour la production et l'échelle.",
     items: [
       {
+        title: "Portail Manifestations (InRetia)",
+        description:
+          "Portail métier sur mesure pour les collectivités territoriales simplifiant la gestion des demandes de manifestations : formulaires publics guidés, circuits d'instruction inter-services, relances automatiques et génération d'arrêtés ou de documents administratifs.",
+        tags: ["Portail métier", "Collectivités", "React", "Next.js", "TypeScript"],
+        highlight: "Instruction agent & circuits de validation",
+        icon: "fa-landmark",
+        link: "https://inretia.fr/portail-manifestations/",
+        linkLabel: "inretia.fr",
+      },
+      {
         title: "Kenko",
         description:
           "Mutuelle santé d'entreprise 100% digitalisée : des packs de garanties modulables (optique, dentaire, médecine) que chaque salarié compose lui-même, sans jargon ni paperasse. Les économies réalisées financent des services de bien-être personnalisés.",
